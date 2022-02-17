@@ -17,10 +17,13 @@ namespace Blazorrrr.Data
 
         public async void GetForecastAsync()
         {
-            string connectionString = "Data Source=172.30.27.217;Initial Catalog=museumdb;Persist Security Info=True;User ID=museumdb;Password=\"Tw'5!=\"j;F4c*0";
-            //string connectionString = @"Data Source=DESKTOP-OS1FU9G\SQLEXPRESS;Initial Catalog=AutoProcat;Integrated Security=True";
+            //'\u0022' + "Tw" + '\u0027' + "5!=" + '\u0022' + "j;F4c*0"
+            string pass = string.Format("\"Tw'5!=\"j; F4c * 0");
+            string connectionString = "Data Source=172.30.27.217;Initial Catalog=museumdb;Persist Security Info=True;User ID=museumdb;Password=" + pass;
+            //string connectionString = @"data source=desktop-os1fu9g\sqlexpress;initial catalog=autoprocat;integrated security=true";
             var contract = new List<WeatherForecast>();
             string sqlExpression = $"SELECT * FROM Student";
+
             SqlConnection connection = new SqlConnection(connectionString);
 
             await connection.OpenAsync();
